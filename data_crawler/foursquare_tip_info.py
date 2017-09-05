@@ -6,10 +6,7 @@ global client, data
 def createClient():
 	global client
 	# Construct the client object
-	# client = foursquare.Foursquare(client_id='L1UFPLBHBD5SMXN1UFXH4YJBMUANZRTEUYBYOFV5VDE5AWOF', client_secret='GG4F1N4ROEIQNMGNVQXATCU1VKLO30RNC0J3N11ZP25DE0U2')
-	# client = foursquare.Foursquare(client_id='CJDUDEUGWR2JUSOJVHIXC3YFICHH2VFVCLHMTB4EMGE5RBKG', client_secret='CHLFN4I0GRBZ30OEPVYIRHGKXC4SSE4RZYVUMKKMS4ECNXUQ')
-	# client = foursquare.Foursquare(client_id='P5U2CXX1J2OMF4DWDE05S5JBXYZMRR4OODPQT4BUNRNSDRE1', client_secret='RJQIU4H13SZQ3H41RMMF25WQL1F0COD2JBUVDGFKETELJEVY')
-	client = foursquare.Foursquare(client_id='JBM14FCYVKHKEH4PNCINGTUSE0KNADOYJJM3NSXTSTFJUZ2O', client_secret='AHDDBJAM3FTAU3AMJHVSYDOVATTI1AGCKLWVHPRSTMINLWOH')
+	client = foursquare.Foursquare(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET')
 	# Build the authorization url for your app
 	auth_uri = client.oauth.auth_url()
 	return client
@@ -59,8 +56,8 @@ if __name__ == "__main__":
 	global client, data
 	data = []
 	client = createClient()
-	with open('/home/adeline/Documents/food_data/food_Taipei_City_tips', 'a') as write_file:
-		with open('/home/adeline/Documents/food_data/food_Taipei_City_fb') as read_file:
+	with open('/home/adeline/Documents/food_data/YOUR_FILE_TO_WRITE', 'a') as write_file:	# Example: food_Taipei_City_Tips
+		with open('/home/adeline/Documents/food_data/YOUR_FILE_TO_READ') as read_file:		# Example: food_Taipei_City_fb
 			print('Getting tips...')
 			venues = read_file.readlines()[1700:]
 			for i, venue in enumerate(venues):

@@ -5,13 +5,10 @@ global 	data, client, count
 
 def create_client():
 	# Construct the client object
-	client = foursquare.Foursquare(client_id='L1UFPLBHBD5SMXN1UFXH4YJBMUANZRTEUYBYOFV5VDE5AWOF', client_secret='GG4F1N4ROEIQNMGNVQXATCU1VKLO30RNC0J3N11ZP25DE0U2')
+	client = foursquare.Foursquare(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET')
 
 	# Build the authorization url for your app
 	auth_uri = client.oauth.auth_url()
-	# result = client.venues.search(params={'intent':'browse','sw':'24.7131,120.8784','ne':'24.8541,121.0332', 'categoryId':'4d4b7105d754a06374d81259', 'limit':50})
-	# result = client.venues.search(params={'intent':'match','ll':'25.0800,121.4400', 'categoryId':'4d4b7105d754a06374d81259', 'limit':50})
-# result = client.venues.search(params={'intent':'match','near':'Taiwan TW','city':'新竹市','categoryId':'4d4b7105d754a06374d81259', 'limit':50})
 	return client
 
 
@@ -101,7 +98,5 @@ if __name__ == "__main__":
 	data = []
 	client = create_client()
 	count = 0
-	# check_region('24.7131', '120.8784', '24.8541', '121.0332')	# Hsinchu City
-	check_region('24.9605', '121.4570', '25.2110', '121.6660')	# Taipei City
-	# check_region('24.6731', '121.2827', '25.3003', '122.0075')	# New Taipei City
+	check_region('SW_XX.XX', 'SW_YY.YY', 'NE_XX,XX', 'NE_YY.YY')
 	dict_json()
