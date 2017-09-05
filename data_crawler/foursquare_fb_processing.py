@@ -1,8 +1,8 @@
 import json
 from fb_fanpage_info import *
 
-out_folder = '/home/adeline/Documents/food_data/'
-filename = 'food_New_Taipei_City'
+out_folder = 'YOUR_OUT_FOLDER'	# Example: /home/adeline/Documents/food_data/
+filename = 'YOUR_FILE_TO_READ'					# Example: food_New_Taipei_City
 venues = []
 with open(out_folder + filename) as open_file:
 	for venue in open_file.readlines():
@@ -12,7 +12,7 @@ with open(out_folder + filename) as open_file:
 
 
 for venue in venues:
-	with open('/home/adeline/Documents/food_data/food_New_Taipei_City_2', 'a') as open_file:
+	with open('YOUR_OUT_FOLDER/YOUR_FILE_TO_WRITE', 'a') as open_file:	# Example: /home/adeline/Documents/food_data/food_New_Taipei_City_2
 
 		venue_id = None
 		venue['fb'] = {}
