@@ -4,7 +4,7 @@ from datetime import datetime
 import urllib.request
 import json
 import time
-
+import re
 def queryEmotion(content_list):
     # Prepare query data
     query = {"data":[]}
@@ -40,18 +40,19 @@ if __name__ == '__main__':
     
 
     es = Elasticsearch([{'host': '192.168.2.10', 'port': 9200}])
+    doc_table = "food"
 
     # Take all result
-    docs = list(elasticsearch.helpers.scan(es, index="pixnet", doc_type='food'))
-    total_content = [(doc['_id'],doc['_source'].get('content')) for doc in docs]
+    docs = list(elasticsearch.helpers.scan(es, index="pixnet", doc_type=doc_table)) #not doc['_source'].get('emotion') or 
+    total_content = [(doc['_id'],doc['_source'].get('content')) for doc in docs if doc['_source'].get('emotion').get('love').get('count')+doc['_source'].get('emotion').get('haha').get('count')+doc['_source'].get('emotion').get('sad').get('count')+doc['_source'].get('emotion').get('angry').get('count')+doc['_source'].get('emotion').get('wow').get('count')==0]
     print('Total index: ', len(total_content))
 
     print('Query Emotion for each sentence')
 
     for pid, content in total_content:
         print('Quering & Updating', pid)
-        emotion_dict = organize_emotion(queryEmotion(content.split('。')))
-        es.update(index='pixnet', doc_type='food', id=total_content[0][0], body={"doc": {"emotion": emotion_dict}})
+        emotion_dict = organize_emotion(queryEmotion(list(filter(None, re.split("[。\n]", content)))))
+        es.update(index='pixnet', doc_type=doc_table, id=pid, body={"doc": {"emotion": emotion_dict}})
         time.sleep(0.5)
 
     
