@@ -11,11 +11,11 @@ app = Flask(__name__)
 
 es = Elasticsearch([{'host': '192.168.2.10', 'port': 9200}])
 header={'Content-Type': 'application/json'}
-req_ch = urllib.request.Request(url='http://140.114.77.23:5678/chuck/couple_all', headers=header, method='POST')
+req_ch = urllib.request.Request(url='http://192.168.2.100:5678/chuck/couple_all', headers=header, method='POST')
 
 cate_list = []
 
-x = requests.get("http://140.114.77.24:9200/_mapping?pretty").text
+x = requests.get("http://192.168.2.10:9200/_mapping?pretty").text
 x = json_acceptable_string = x.replace("'", "\"")
 d = json.loads(x)
 for cate in d["pixnet"]["mappings"]:
@@ -49,7 +49,7 @@ def organize_emotion_ch(emotion_json):
     return emotion_list
 
 API_Keys = [
-    "AIzaSyCs1FDXEQhfcIvQSE_5oc064meaMjuEyt4"
+    "GOOGLE-PLACES-API-KEI"
 ]
 
 def nearby_search(lat, lng, r):
