@@ -9,7 +9,7 @@ from get_contact_info import *
 
 # Prepare query 
 header={'Content-Type': 'application/json'}
-req_ch = urllib.request.Request(url='http://140.114.77.23:5678/chuck/couple_all', headers=header, method='POST')
+req_ch = urllib.request.Request(url='http://192.168.2.100:5678/chuck/couple_all', headers=header, method='POST')
 
 
 def readJSONFromFile(filename):
@@ -79,7 +79,7 @@ def convertToCorrespondJSON(data):
 
 def insertIntoElasticsearch(doc):
     # ElasticSearch settings
-    ES_HOST = {"host": "140.114.77.24", "port": 9200}
+    ES_HOST = {"host": "192.168.2.100", "port": 9200}
     ES_INDEX = 'pixnet'
     ES_TYPE = 'foursquare'
     es = Elasticsearch([ES_HOST])
